@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="5"
+    name="Skyline Template v2"
+    minApi="7"
+    minBuildApi="14"
+    description="Creates a new Skyline MVP Template">
+
+
+    <globals file="globals.xml.ftl" />
+    <category value="Skyline2" />
+    <formfactor value="Mobile" />
+
+    <parameter
+        id="packageName"
+        name="Root Directory"
+        type="string"
+        constraints="package"
+        help="This is where the generated files will be placed"
+        default="${escapeXmlAttribute(srcOut)}" />
+
+    <parameter
+        id="feature"
+        name="MVP name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="MyFeature"
+        help="The name of the feature. Capitalize and camel case" />
+
+    <parameter
+        id="presenter"
+        name="Presenter name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${feature}Presenter"
+        default="${feature}Presenter"
+        help="The name of the layout to create for the activity" />
+
+     <parameter
+        id="fragment"
+        name="Fragment name"
+        type="string"
+        constraints="class|nonempty|unique"
+        suggest="${feature}Fragment"
+        default="${feature}Fragment"
+        help="The name of the Module to create" />
+
+
+     <parameter
+        id="viewInterface"
+        name="View interface name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="${feature}View"
+        suggest="${feature}View"
+        help="The name of the View interface to create" />
+
+
+    <parameter
+        id="service"
+        name="Create a service?"
+        type="boolean"
+        default="true"
+        help="Will create a new package with your feature name and place the generated files there" />
+
+    <parameter
+        id="tests"
+        name="Create unit tests?"
+        type="boolean"
+        default="true" />
+
+    <parameter
+        id="createjsonresponse"
+        name="Generate Json Response"
+        type="boolean"
+        default="false"
+        visibility="tests"
+        help="Generates test resources for loading in mock server responses" />
+
+
+<!-- 
+    <parameter
+        id="documentation"
+        name="Generate documentation"
+        type="boolean"
+        default="false"
+        help="Will generate useful documentation on how to use the project" />
+
+     <parameter
+        id="customView"
+        name="Generate customView"
+        type="boolean"
+        default="false"
+        help="Will generate a customView, its xml and add attrs." />
+ -->
+
+    <!-- 512x512 thumbnails relative to template.xml -->
+    <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>app_icon.png</thumb>
+    </thumbs>
+
+    <execute file="recipe.xml.ftl" />
+
+</template>
