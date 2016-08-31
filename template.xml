@@ -9,7 +9,7 @@
 
 
     <globals file="globals.xml.ftl" />
-    <category value="Skyline2" />
+    <category value="Skyline v2" />
     <formfactor value="Mobile" />
 
     <parameter
