@@ -1,6 +1,8 @@
 package ${skylinePackageName};
 
+import com.google.gson.Gson;
 import ${skylinePackageName}.presenter.${feature}Presenter;
+import ${skylinePackageName}.service.${feature}Response;
 import ${skylinePackageName}.service.${feature}Service;
 import ${skylinePackageName}.view.${viewInterface};
 
@@ -9,8 +11,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import lib.mobile.skyline.common.entities.Status;
+import rx.Observable;
 import rx.android.plugins.RxAndroidPlugins;
 import rx.plugins.RxJavaTestPlugins;
 
@@ -25,7 +30,7 @@ public class ${feature}PresenterTest {
     @Mock
     private ${feature}Service service;
     <#else>
-    </#if>              
+    </#if>
     private ${feature}Presenter presenter;
 
 
@@ -36,7 +41,7 @@ public class ${feature}PresenterTest {
         presenter = new ${feature}Presenter(service);
         <#else>
         presenter = new ${feature}Presenter();
-        </#if> 
+        </#if>
     }
 
     @After
@@ -55,7 +60,7 @@ public class ${feature}PresenterTest {
         <#if createjsonresponse>
 
     private Observable<Status<${feature}Response>> validResponse(String filename) {
-        AccountsResponse ar = new Gson().fromJson(new UnitTestJsonFileReader().loadJSONFromResourses(filename),${feature}Response.class);
+        ${feature}Response ar = new Gson().fromJson(new UnitTestJsonFileReader().loadJSONFromResourses(filename),${feature}Response.class);
         return Observable.just(new Status<>(ar));
     }
 

@@ -1,18 +1,20 @@
 <?xml version="1.0"?>
 <recipe>
-   
-     <#if tests>  
+
+     <#if tests>
 
       <instantiate from="root/tests/MvpPresenterTest.java.ftl"
                      to="${MyTestDir}${FullTestDir}/${feature?lower_case}/${feature}PresenterTest.java" />
 
-      <#if createjsonresponse>  
+         <#if createjsonresponse>
+            <instantiate from="root/tests/JsonLoader.java.ftl"
+                        to="${MyTestDir}${FullTestDir}/${feature?lower_case}/${feature}PresenterTest.java" />
 
-         <instantiate from="root/tests/JsonLoader.java.ftl"
-                     to="${MyTestDir}${FullTestDir}/${feature?lower_case}/${feature}PresenterTest.java" />
-         <instantiate from="root/tests/ValidJson.json"
-                     to="${MyTestDir}${ResourceTestDir}/${feature?lower_case}/validresponse.json" />
+            <instantiate from="root/tests/ValidJson.json"
+                        to="${MyTestDir}${ResourceTestDir}/${feature?lower_case}/validresponse.json" />
 
+           <instantiate from="root/tests/JsonLoader.java.ftl"
+                        to="${MyTestDir}${ResourceTestDir}/${feature?lower_case}/JsonLoader.java" />
       </#if>
 
      </#if>
@@ -30,7 +32,7 @@
                      to="${skylineDir}/service/${feature}Service.java" />
 
 
-    </#if>  
+    </#if>
 
     <instantiate from="root/dagger/MvpModule.java.ftl"
                     to="${skylineDir}/dagger/${feature}Module.java" />
